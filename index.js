@@ -5,8 +5,8 @@ const path = require('path')
 const archiver = require('archiver');
 function zip(_path) {
   // create a file to stream archive data to.
-  const output = fs.createWriteStream(path.resolve(__dirname, '../dist.zip'));
-  console.log(path.resolve(__dirname, '../dist.zip'));
+  const output = fs.createWriteStream(path.resolve(_path, '../dist.zip'));
+  console.log(path.resolve(_path, '../dist.zip'));
 
   const archive = archiver('zip', {
     zlib: { level: 9 } // Sets the compression level.
