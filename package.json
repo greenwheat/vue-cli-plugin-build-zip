@@ -8,7 +8,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/greenwheat/vue-cli-plugin-build-zip.git"
+    "url": "https://github.com/greenwheat/vue-cli-plugin-build-zip.git"
   },
   "keywords": [
     "vue-cli3",
