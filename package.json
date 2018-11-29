@@ -1,6 +1,6 @@
 {
   "name": "vue-cli-plugin-build-zip",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "To archive files in 'dist' folder after building.",
   "main": "index.js",
   "scripts": {
