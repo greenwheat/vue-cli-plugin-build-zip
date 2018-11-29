@@ -55,7 +55,8 @@ module.exports = api => {
 
   api.registerCommand('zip:build',{
     description: 'Run zip command to archive files from dist folder to dist.zip',
-    usage: 'vue-cli-service zip:build'
+    usage: 'vue-cli-service zip:build',
+    details:'https://github.com/greenwheat/vue-cli-plugin-build-zip'
   }, () => {
     const distPath = api.resolve('./dist');
     zip(distPath);
