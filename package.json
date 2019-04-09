@@ -1,6 +1,6 @@
 {
   "name": "vue-cli-plugin-build-zip",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "To archive files in 'dist' folder after building.",
   "main": "index.js",
   "scripts": {
@@ -22,7 +22,7 @@
     "url": "https://github.com/greenwheat/vue-cli-plugin-build-zip/issues"
   },
   "homepage": "https://github.com/greenwheat/vue-cli-plugin-build-zip#readme",
-  "devDependencies": {
+  "dependencies": {
     "archiver": "^3.0.0"
   }
 }
