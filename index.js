@@ -3,10 +3,10 @@ const fs = require('fs');
 const path = require('path')
 // const config = require('../config')
 const archiver = require('archiver');
-function zip(_path) {
+function zip(_path, _fileName) {
   // create a file to stream archive data to.
-  const output = fs.createWriteStream(path.resolve(_path, '../dist.zip'));
-  console.log(path.resolve(_path, '../dist.zip'));
+  const output = fs.createWriteStream(path.resolve(_path, '../${_fileName}.zip'));
+  console.log(path.resolve(_path, '../${_fileName}.zip'));
 
   const archive = archiver('zip', {
     zlib: { level: 9 } // Sets the compression level.
@@ -51,6 +51,9 @@ function zip(_path) {
   // 'close', 'end' or 'finish' may be fired right after calling this method so register to them beforehand
   archive.finalize();
 }
+function fixZero(s){
+  return ('00'+s).substr(s.length)
+}
 module.exports = api => {
 
   api.registerCommand('zip:build',{
@@ -59,10 +62,22 @@ module.exports = api => {
     details:'https://github.com/greenwheat/vue-cli-plugin-build-zip'
   }, () => {
     const distPath = api.resolve('./dist');
-    zip(distPath);
+    zip(distPath, 'dist');
+  })
+  api.registerCommand('zip:build:date',{
+    description: 'Run zip command to archive files from dist folder to {publicPath}-{date}.zip',
+    usage: 'vue-cli-service zip:build:date',
+    details:'https://github.com/greenwheat/vue-cli-plugin-build-zip'
+  }, () => {
+    let d = new Date();
+    let publishPath = options.baseUrl.replace(/(^[\/\\])|([\/\\]$)/g, '').replace('/', '-') || 'dist'
+    let zipFileName = publishPath + d.getFullYear() + fixZero(d.getMonth()+1) + fixZero(d.getDate()) + fixZero(d.getHours()) + fixZero(d.getMinutes()) + fixZero(d.getSeconds());
+    const distPath = api.resolve('./dist');
+    zip(distPath, zipFileName);
   })
 }
 
 module.exports.defaultModes = {
-  'zip:build': 'production'
+  'zip:build': 'production',
+  'zip:build:date': 'production',
 }
